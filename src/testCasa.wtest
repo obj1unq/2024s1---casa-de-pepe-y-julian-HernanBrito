@@ -1,0 +1,8 @@
+import casa.*
+
+
+test "se rompe algo de 1000 , no esta en orden,viveres = 50" {
+	casaDePepeYJulian.romper(1000)
+	assert.that(casaDePepeYJulian.hayViveresSuficientes())
+	assert.notThat(casaDePepeYJulian.casaEnOrden())
+}
