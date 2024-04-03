@@ -3,6 +3,40 @@ import casa.*
 
 test "se rompe algo de 1000 , no esta en orden,viveres = 50" {
 	casaDePepeYJulian.romper(1000)
+	assert.that(casaDePepeYJulian.hayQueHacerReparaciones())
 	assert.that(casaDePepeYJulian.hayViveresSuficientes())
 	assert.notThat(casaDePepeYJulian.casaEnOrden())
+}
+
+test "cuenta vacia se depositan 1000 pesos, costo de operacion 20 pesos"{
+	cuentaGastos.costoOperacion(20)
+	cuentaGastos.depositar(1000)
+	assert.equals(cuentaGastos.saldo() , 980)
+}
+
+
+test "100 pesos en la cuenta combinada , terminan en cuenta gastos ya que es primaria, quedando 50 pesos en total"{
+	cuentaGastos.costoOperacion(50)
+	cuentaCorriente.depositar(500)
+	cuentaCombinada.cuentaPrimaria(cuentaGastos)
+	cuentaCombinada.cuentaSecundaria(cuentaCorriente)
+	cuentaCombinada.depositar(100)
+	assert.equals(cuentaGastos.saldo() , 50)
+}
+
+test"Extraer 200 pesos, se extraen de la cuenta secundaria ya que la primaria no tiene lo suficiente, la cuenta 
+	 corriente queda en 300 pesos"{
+	cuentaGastos.costoOperacion(50)
+	cuentaCorriente.depositar(500)
+	cuentaCombinada.cuentaPrimaria(cuentaGastos)
+	cuentaCombinada.cuentaSecundaria(cuentaCorriente)
+	cuentaCombinada.extraer(200)
+	assert.equals(cuentaCorriente.saldo() , 300)	
+}
+
+test "Saldo combinado es 350 pesos , 50 en cuenta gastos y 300 en corriente"{
+	//no le puse costo de operacion para hacer mas sencillo el deposito
+	cuentaGastos.depositar(50)
+	cuentaCorriente.depositar(300)
+	assert.equals(cuentaCombinada.saldo() , 350)
 }
