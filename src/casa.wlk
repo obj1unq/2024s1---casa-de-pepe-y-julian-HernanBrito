@@ -83,7 +83,7 @@ object casaDePepeYJulian {
 	}
 	
 	method viveresFaltantes(){
-		return viveresNecesarios - self.cantidadDeViveres()
+		return ( viveresNecesarios - self.cantidadDeViveres() )
 	}
 	
 }
@@ -216,7 +216,6 @@ object minimoEIndispensable{
 	method cobrarViveres(casa , cantidad){
 		casa.pagarViveres(cantidad * calidadDeVivere)
 	}
-	
 }
 
 
