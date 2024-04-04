@@ -14,7 +14,6 @@ object casaDePepeYJulian {
 		cantidadDeViveres += self.viveresFaltantes()
 	}
 	
-	
 	method cantidadDeViveres(_cantidadViveres){
 		cantidadDeViveres = _cantidadViveres
 	}
@@ -56,8 +55,6 @@ object casaDePepeYJulian {
 		cuentaBancaria.extraer(valor)
 	}
 
-	
-	
 	method casaEnOrden(){
 		return (cantidadDeViveres > viveresNecesarios) && (self.montoReparacion() == 0)
 	}
@@ -201,8 +198,8 @@ object minimoEIndispensable{
 	
 	
 	method mantenimiento(casa){
-		casa.agregarViveresFaltantes()
 		self.cobrarViveres(casa , casa.viveresFaltantes())
+		casa.agregarViveresFaltantes()
 	}	
 	
 	method calidadDeVivere(){
@@ -218,5 +215,6 @@ object minimoEIndispensable{
 	}
 }
 
-
-
+//si se podriar modelar otra casa la cual tendria que entender (montoReparacion() , saldoDeLaCuenta() que tiene asociada
+//a la casa , viveresFaltantes() , agregarViveresFaltantes(), casaEnOrden , reparar() etc para poder lograr llamar a un
+//mantenimiento
