@@ -40,3 +40,37 @@ test "Saldo combinado es 350 pesos , 50 en cuenta gastos y 300 en corriente"{
 	cuentaCorriente.depositar(300)
 	assert.equals(cuentaCombinada.saldo() , 350)
 }
+
+
+test"casa con 50% de viveres, necesita 100 pesos para reparaciones.Con cuenta corriente asociada de
+	 1000 de saldo disponible con una estrategia de ahorro full."{
+	casaDePepeYJulian.cantidadDeViveres(50)
+	casaDePepeYJulian.romper(100)
+	casaDePepeYJulian.cuentaBancaria(cuentaCorriente)
+	cuentaCorriente.depositar(1000)
+	casaDePepeYJulian.estrategiaDeAhorro(full)
+	casaDePepeYJulian.mantenimiento()
+	assert.equals(90 , casaDePepeYJulian.cantidadDeViveres())
+	assert.equals(100, casaDePepeYJulian.montoReparacion())
+	assert.equals(800 , cuentaCorriente.saldo())
+	
+}
+
+test"casa con 20% de viveres , calidad de viveres 10 , Con cuenta corriente asociada de
+	 1000 de saldo disponible con una estrategia de ahorro minimo e indispensable."{
+	casaDePepeYJulian.cantidadDeViveres(20)
+	minimoEIndispensable.calidadDeVivere(10)
+	casaDePepeYJulian.cuentaBancaria(cuentaCorriente)
+	cuentaCorriente.depositar(1000)
+	casaDePepeYJulian.estrategiaDeAhorro(minimoEIndispensable)
+	casaDePepeYJulian.mantenimiento()
+	assert.equals(40 , casaDePepeYJulian.cantidadDeViveres())
+	assert.equals(800 , cuentaCorriente.saldo())
+}
+
+
+
+
+
+
+
